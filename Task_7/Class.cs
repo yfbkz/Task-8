@@ -6,9 +6,8 @@ namespace Task_7
     public class T7
     {
         public static string res;
-        string letters = "abcdefghijklmnopqrstuvwxyz";
-        string incor = "";
-        public static List<Object> NewString(string s, char m)
+       
+        public static List<Object> NewString(string s, char m, string API)
         {
             List<Object> RetList = new List<Object>();
             string letters = "abcdefghijklmnopqrstuvwxyz";
@@ -48,7 +47,7 @@ namespace Task_7
             RetList.Add(CountOfLetters(s4));
             RetList.Add(LongestString(s4));
             RetList.Add("Sorted string: "+SortString(s4, m));
-            RetList.Add(DeleteLetter(s4));
+            RetList.Add(DeleteLetter(s4, API));
 
             return (RetList);
 
@@ -104,13 +103,13 @@ namespace Task_7
             return res;
         }
 
-        static string DeleteLetter(string str)
+        static string DeleteLetter(string str, string API)
         {
             int ind;
             res = "";
             try
             {
-                string text = $"http://www.randomnumberapi.com/api/v1.0/random?min=0&max={str.Length - 1}&count=1";
+                string text =API+$"{str.Length - 1}&count=1";
                 WebRequest wr = WebRequest.Create(text);
                 Stream objSt = wr.GetResponse().GetResponseStream();
                 StreamReader objRd = new StreamReader(objSt);
